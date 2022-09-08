@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load material_form %}
+{% load staticfiles %}
+
+
+{% block title %} Add Article {% endblock %}
+
+{% block staticcontent %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' type='text/css' href='account/css/addItem.css'>
+
+{% endblock %}
+
+{% block content %} 
+<h1>Think and write up a blog/article on any topic!!</h1>
+<div>
+    <br>
+    <form action="{% url 'addArticle' %}" method='post' enctype='multipart/form-data'>
+      {% csrf_token %}
+      {% form form=nForm %} {% endform %}
+      <button type='submit' class='btn' name='addArticle'>Add Article</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+	<div> <a href="{% url 'articles' %}">MY ARTICLES</a> </div>
+{% endblock %}
+
+

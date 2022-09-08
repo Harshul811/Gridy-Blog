@@ -1,0 +1,89 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block title %} Articles {% endblock %}
+
+{% block staticcontent %}
+  <link rel='stylesheet' type='text/css' href="{% static 'account/css/articles.css' %}">
+  <link rel="stylesheet" href = "{% static 'wardrobe/css/articles.css' %}" type='text/css'>
+  <script src = "{% static 'account/js/articles.js' %}"></script>
+{% endblock %}
+
+{% block header %}
+  <div> <a href="{% url 'logout' %}">Logout</a> </div>
+{% endblock %}
+
+{% block nav %}
+
+<div> <a href="{% url 'home' %}">HOME</a> </div>
+<div class='highlight'> <a href="{% url 'articles' %}">MY articles</a> </div>
+<div id='add'> <a href="{% url 'addarticle' %}">Add article</a> </div>
+{% endblock %}
+
+{% block intro %} 
+<h3>View all articles uploaded -add,filter and read!!</h3>
+<div class="container">
+<div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="{% static 'wardrobe/images/tops.jpg' %}" width="100px" height="auto">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Tops<i class="material-icons right">more_vert</i></span>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="images/office.jpg">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Lowers<i class="material-icons right">more_vert</i></span>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="images/office.jpg">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Single Pieces<i class="material-icons right">more_vert</i></span>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Single Pieces<i class="material-icons right">close</i></span>
+    </div>
+</div>
+</div>
+            
+{% endblock %}
+
+{% block info %}
+  <div class="row tops">
+    <div id='pics'>
+      {% for article in user.articles.all %}
+        <div class='pics-container'>
+          <img width='200px' height='auto' src="{{article.image.url}}" />
+          <div>{{ article.category }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="row lowers">
+  </div>
+
+  <div class="row singlePieces">
+  </div>
+
+<script>
+  window.addEventListener('load',init);
+</script>
+{% endblock %}
+
+
+
+
+
+{% block sidebar %}  
+  <div>FILTER FORM</div>
+ 
+{% endblock %}
+
